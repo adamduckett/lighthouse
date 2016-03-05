@@ -86,7 +86,7 @@ $lh-major-second:              1.125;
 $lh-minor-second:              1.066666667;
 
 /* This one you CAN edit to reflect your preferred modular scale. */
-$lh-ratio:                  $lh-golden !default;
+$lh-ratio:                     $lh-golden !default;
 
 
 /**
@@ -94,10 +94,10 @@ $lh-ratio:                  $lh-golden !default;
  *
  * Toggle the baseline helper guides `on` or `off` as well as their colour.
  */
-$lh-baseline:               round($lh-font-size * $lh-line-height);
+$lh-baseline:                  round($lh-font-size * $lh-line-height);
 
-$lh-use-baseline-guides:    true !default; // [ true / false
-$lh-baseline-color:         rgba(56,255,255,.8) !default;
+$lh-use-baseline-guides:       true !default; // [ true / false
+$lh-baseline-color:            rgba(56,255,255,.8) !default;
 
 
 /**
@@ -105,8 +105,8 @@ $lh-baseline-color:         rgba(56,255,255,.8) !default;
  *
  * Toggle modular scale `on` or `off`
 */
-$lh-use-modular-scale:      true !default; // [ true / false
-$lh-modular-scale:          $lh-font-size;
+$lh-use-modular-scale:         true !default; // [ true / false
+$lh-modular-scale:             $lh-font-size;
 
 
 /**
@@ -114,13 +114,13 @@ $lh-modular-scale:          $lh-font-size;
  *
  * This value will be used to set consistent spacing across all elements.
  */
-$lh-spacing:                $lh-baseline !default;
+$lh-spacing:                   $lh-baseline !default;
 
 
 /**
  * Measure
  */
-$lh-use-measure:            true !default; // [ true / false ]
+$lh-use-measure:               true !default; // [ true / false ]
 
 
 
