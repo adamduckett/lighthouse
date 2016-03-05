@@ -60,7 +60,7 @@ While ```lighthouse.scss``` applies the background to the `body` of the page fee
 ###Modular Scale
 When ```$lh-use-modular-scale``` is set to `true` LiGHTHOUSE will apply `font-size` and `line-height` based on the ```$lh-font-size``` and ```$lh-ratio``` variables.
 
-This ensures your good visual hierarchy by scaling heading (h1-5) and paragraph font sizes based on your chosen ratio. LiGHTHOUSE comes bundled with the following modular scale ratios:
+This ensures your good visual hierarchy by scaling heading (`h1-5`) and paragraph font sizes based on your chosen ratio. LiGHTHOUSE comes bundled with the following modular scale ratios:
 
 ```sass
 $lh-golden:                    1.618034;
