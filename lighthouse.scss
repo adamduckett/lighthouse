@@ -207,41 +207,42 @@ $lh-spacing:                   $lh-baseline !default;
 /*------------------------------------*\
     $MODULAR-SCALE
 \*------------------------------------*/
+
+/**
+ * Our font-size function using modular scale
+ */
+@function scale($value: 0, $base: $lh-font-size, $ratio: $lh-ratio) {
+  @return scale-round-px(scale-pow($ratio, $value) * $base);
+}
+
+/**
+ * Our line-height function using modular scale
+ * 1. Calculate our modular scale font-size
+ * 2. The height of our baseline
+ * 3. The number of whole lines our type spans
+ * 4. Return a line-height value that vertically centers our type across
+ *    however many whole lines it spans
+ */
+@function lines($value: 0, $base: $lh-font-size, $ratio: $lh-ratio) {
+  $font-size: scale-round-px(scale-pow($ratio, $value) * $base);  /* [1] */
+  $line: $lh-baseline;                                            /* [2] */
+  $lines: ceil($font-size / $line);                               /* [3] */
+
+  @return (ceil($lines) * $line) / $font-size;                    /* [4] */
+}
+
+/**
+ * Create our modular scale mixin which sets both `font-size` and `line-height'.
+ */
+@mixin modular-scale($value) {
+  font-size: scale($value);
+  line-height: lines($value);
+}
+
 /**
  * Apply our modular scale (if toggled `on`)
  */
 @if $lh-use-modular-scale {
-
-  /**
-   * Our font-size function using modular scale
-   */
-  @function scale($value: 0, $base: $lh-font-size, $ratio: $lh-ratio) {
-    @return scale-round-px(scale-pow($ratio, $value) * $base);
-  }
-
-  /**
-   * Our line-height function using modular scale
-   * 1. Calculate our modular scale font-size
-   * 2. The height of our baseline
-   * 3. The number of whole lines our type spans
-   * 4. Return a line-height value that vertically centers our type across
-   *    however many whole lines it spans
-   */
-  @function lines($value: 0, $base: $lh-font-size, $ratio: $lh-ratio) {
-    $font-size: scale-round-px(scale-pow($ratio, $value) * $base);  /* [1] */
-    $line: $lh-baseline;                                            /* [2] */
-    $lines: ceil($font-size / $line);                               /* [3] */
-
-    @return (ceil($lines) * $line) / $font-size;                    /* [4] */
-  }
-
-  /**
-   * Create our modular scale mixin which sets both `font-size` and `line-height'.
-   */
-  @mixin modular-scale($value) {
-    font-size: scale($value);
-    line-height: lines($value);
-  }
 
   /**
    * Headings
@@ -305,22 +306,23 @@ $lh-spacing:                   $lh-baseline !default;
 /*------------------------------------*\
     $MEASURE
 \*------------------------------------*/
+
+/**
+ * Set our typography measure to keep line length to an optimum character
+ * length.
+ */
+$lh-measure: (strip-unit($lh-font-size) * 30) * 1px;
+
+/**
+ * Create a mixin to apply our measure to any element we want, yo!
+ */
+@mixin measure() {
+  max-width: $lh-measure;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @if $lh-use-measure {
-
-  /**
-   * Set our typography measure to keep line length to an optimum character
-   * length.
-   */
-  $lh-measure: (strip-unit($lh-font-size) * 30) * 1px;
-
-  /**
-   * Create a mixin to apply our measure to any element we want, yo!
-   */
-  @mixin measure() {
-    max-width: $lh-measure;
-    margin-left: auto;
-    margin-right: auto;
-  }
 
   /**
    * Apply our calculated measure by including our mixin.
