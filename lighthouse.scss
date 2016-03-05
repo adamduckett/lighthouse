@@ -6,7 +6,7 @@
  * INTRO.................A pretentious paragraph about 'the idea' of LiGHTHOUSE.
  * VARIABLES.............Your settings.
  * FUNCTIONS.............Functions used to build the scale.
- * BASELINE..............Our baseline grid helper overlay.
+ * BASELINE-GUIDES.......Our baseline grid helper overlay.
  * MODULAR SCALE.........Setup our modular scale for setting type.
  * VERTICAL RHYTHM.......Maintain consistent vertical spacing.
  * MEASURE...............Keep line length at an optimum character length.
@@ -95,8 +95,6 @@ $lh-ratio:                     $lh-golden !default;
  * Toggle the baseline helper guides `on` or `off` as well as their colour.
  */
 $lh-baseline:                  round($lh-font-size * $lh-line-height);
-
-$lh-use-baseline-guides:       true !default; // [ true / false
 $lh-baseline-color:            rgba(56,255,255,.8) !default;
 
 
@@ -105,8 +103,7 @@ $lh-baseline-color:            rgba(56,255,255,.8) !default;
  *
  * Toggle modular scale `on` or `off`
 */
-$lh-use-modular-scale:         true !default; // [ true / false
-$lh-modular-scale:             $lh-font-size;
+$lh-modular-scale:             $lh-font-size !default;
 
 
 /**
@@ -115,12 +112,6 @@ $lh-modular-scale:             $lh-font-size;
  * This value will be used to set consistent spacing across all elements.
  */
 $lh-spacing:                   $lh-baseline !default;
-
-
-/**
- * Measure
- */
-$lh-use-measure:               true !default; // [ true / false ]
 
 
 
@@ -180,7 +171,7 @@ $lh-use-measure:               true !default; // [ true / false ]
 
 
 /*------------------------------------*\
-    $BASELINE
+    $BASELINE-GUIDES
 \*------------------------------------*/
 /**
  * Generate a baseline grid to aid in DEVELOPMENT only. Thanks to Mike Morrison
