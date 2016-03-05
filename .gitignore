@@ -11,3 +11,6 @@ node_modules
 *[Tt]humbs.db
 *.Trashes
 *.log
+
+# Test files
+test

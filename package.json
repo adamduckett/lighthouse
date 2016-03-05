@@ -1,0 +1,32 @@
+{
+  "name": "lighthouse",
+  "version": "1.0.0",
+  "description": "A simple web typography starter pack.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamduckett/lighthouse.git"
+  },
+  "keywords": [
+    "typography"
+  ],
+  "author": "Adam Duckett",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adamduckett/lighthouse/issues"
+  },
+  "homepage": "https://github.com/adamduckett/lighthouse#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.1.0",
+    "gulp-util": "^3.0.7"
+  }
+}

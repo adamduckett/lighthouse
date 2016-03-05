@@ -1,0 +1,341 @@
+/*------------------------------------*\
+    $LiGHTHOUSE
+\*------------------------------------*/
+/**
+ * CONTENTS..............You're readint it, sucka!
+ * INTRO.................A pretentious paragraph about 'the idea' of LiGHTHOUSE.
+ * VARIABLES.............Your settings.
+ * FUNCTIONS.............Functions used to build the scale.
+ * BASELINE..............Our baseline grid helper overlay.
+ * MODULAR SCALE.........Setup our modular scale for setting type.
+ * VERTICAL RHYTHM.......Maintain consistent vertical spacing.
+ * MEASURE...............Keep line length at an optimum character length.
+ */
+
+
+
+
+
+/*------------------------------------*\
+    $INTRO
+\*------------------------------------*/
+/**
+ * In the dark times of bad web typography LiGHTHOUSE is a beacon of light or
+ * rum-fueled sailors/front-end developers on a quest for beautiful typography,
+ * consistent vertical rhythm and topless mermaids.
+ *
+ * DISCLAIMER: Due to accusations of poor working conditions the aforementioned
+ * 'topless mermaids' have been removed from this version of LiGHTHOUSE :(
+ */
+
+
+
+
+
+/*------------------------------------*\
+    $TOGGLE-ALL-THE-THINGS!
+\*------------------------------------*/
+/**
+ * Because I'm awesome, LiGHTHOUSE lets you toggle on/off each module
+ * independently so you can easily cook up a custom flavour to suit your own
+ * project's needs :)
+ */
+$lh-use-baseline-guides:       true; // [ true / false ]
+$lh-use-modular-scale:         true; // [ true / false ]
+$lh-use-vertical-rhythm:       true; // [ true / false ]
+$lh-use-measure:               true; // [ true / false ]
+
+
+
+
+
+/*------------------------------------*\
+    $VARIABLES
+\*------------------------------------*/
+/**
+ * Config
+ *
+ * Define our base `font-size` and `line-height`.
+ */
+$lh-font-size:                 16px !default; // a `px` value
+$lh-line-height:               1.5 !default;  // a unitless value
+
+
+/**
+ * Modular Scale Ratios
+ *
+ * Our modular scale ratio variables. You should never have to edit or override
+ * these :)
+ */
+$lh-golden:                    1.618034;
+$lh-double-octav:              4;
+$lh-major-twelfth:             3;
+$lh-major-eleventh:            2.666666667;
+$lh-major-tenth:               2.5;
+$lh-octave:                    2;
+$lh-major-seventh:             1.875;
+$lh-minor-seventh:             1.777777778;
+$lh-major-sixth:               1.666666667;
+$lh-minor-sixth:               1.6;
+$lh-fifth:                     1.5;
+$lh-augmented-fourth:          1.41421;
+$lh-fourth:                    1.333333333;
+$lh-major-third:               1.25;
+$lh-minor-third:               1.2;
+$lh-major-second:              1.125;
+$lh-minor-second:              1.066666667;
+
+/* This one you CAN edit to reflect your preferred modular scale. */
+$lh-ratio:                  $lh-golden !default;
+
+
+/**
+ * Baseline & Guides
+ *
+ * Toggle the baseline helper guides `on` or `off` as well as their colour.
+ */
+$lh-baseline:               round($lh-font-size * $lh-line-height);
+
+$lh-use-baseline-guides:    true !default; // [ true / false
+$lh-baseline-color:         rgba(56,255,255,.8) !default;
+
+
+/**
+ * Modular Scale
+ *
+ * Toggle modular scale `on` or `off`
+*/
+$lh-use-modular-scale:      true !default; // [ true / false
+$lh-modular-scale:          $lh-font-size;
+
+
+/**
+ * Vertical Rhythm
+ *
+ * This value will be used to set consistent spacing across all elements.
+ */
+$lh-spacing:                $lh-baseline !default;
+
+
+/**
+ * Measure
+ */
+$lh-use-measure:            true !default; // [ true / false ]
+
+
+
+
+
+/*------------------------------------*\
+    $FUNCTIONS
+\*------------------------------------*/
+/**
+ * Round up px values
+ */
+@function scale-round-px($result) {
+  @if unit($result) == 'px' {
+    @return round($result);
+  }
+  @return $result;
+}
+
+/**
+ * Remove the unit of a length
+ */
+@function strip-unit($num) {
+  @if type-of($num) == 'number' and not unitless($num) {
+    @return $num / ($num * 0 + 1);
+  }
+
+  @return $num;
+}
+
+/**
+ * Calculate our `base` to the power of our `exponent`
+ */
+@function scale-pow($base, $exp) {
+  $unit: $base * 0 + 1;
+  $base: $base/$unit;
+  $value: 1;
+
+  @if $exp > 0 {
+    @for $i from 1 through $exp {
+      $value: $value * $base;
+    }
+  }
+  @else if $exp < 0 {
+    @for $i from 1 through -$exp {
+      $value: $value / $base;
+    }
+  }
+
+  @return $value * $unit;
+}
+
+
+
+
+
+
+
+
+/*------------------------------------*\
+    $BASELINE
+\*------------------------------------*/
+/**
+ * Generate a baseline grid to aid in DEVELOPMENT only. Thanks to Mike Morrison
+ * at Soholaunch.com for the idea behind this!
+ */
+@if $lh-use-baseline-guides {
+
+  body {
+    background-image: -webkit-linear-gradient(
+      top,
+      rgba(0,0,0,0) 95%,
+      $lh-baseline-color 100%
+    );
+  	background-image: -moz-linear-gradient(
+      top,
+      rgba(0,0,0,0) 95%,
+      $lh-baseline-color 100%
+    );
+  	background-image: -o-linear-gradient(
+      top,
+      rgba(0,0,0,0) 95%,
+      $lh-baseline-color 100%
+    );
+  	background-size: 100% $lh-baseline;
+  }
+
+}
+
+
+
+
+
+/*------------------------------------*\
+    $MODULAR-SCALE
+\*------------------------------------*/
+/**
+ * Apply our modular scale (if toggled `on`)
+ */
+@if $lh-use-modular-scale {
+
+  /**
+   * Our font-size function using modular scale
+   */
+  @function scale($value: 0, $base: $lh-font-size, $ratio: $lh-ratio) {
+    @return scale-round-px(scale-pow($ratio, $value) * $base);
+  }
+
+  /**
+   * Our line-height function using modular scale
+   * 1. Calculate our modular scale font-size
+   * 2. The height of our baseline
+   * 3. The number of whole lines our type spans
+   * 4. Return a line-height value that vertically centers our type across
+   *    however many whole lines it spans
+   */
+  @function lines($value: 0, $base: $lh-font-size, $ratio: $lh-ratio) {
+    $font-size: scale-round-px(scale-pow($ratio, $value) * $base);  /* [1] */
+    $line: $lh-baseline;                                            /* [2] */
+    $lines: ceil($font-size / $line);                               /* [3] */
+
+    @return (ceil($lines) * $line) / $font-size;                    /* [4] */
+  }
+
+  /**
+   * Create our modular scale mixin which sets both `font-size` and `line-height'.
+   */
+  @mixin modular-scale($value) {
+    font-size: scale($value);
+    line-height: lines($value);
+  }
+
+  /**
+   * Headings
+   */
+  h1 { @include modular-scale(3);  }
+  h2 { @include modular-scale(2);  }
+  h3 { @include modular-scale(1);  }
+  h4 { @include modular-scale(0);  }
+  h5 { @include modular-scale(-1); }
+
+  /**
+   * Paragraphs
+   */
+  p {
+    @include modular-scale(0);
+  }
+
+}
+
+
+
+
+
+/*------------------------------------*\
+    $VERTICAL-RHYTHM
+\*------------------------------------*/
+@if $lh-use-vertical-rhythm {
+
+  /**
+   * A quick reset before we get started.
+   */
+  body,
+  h1, h2, h3, h4, h5, h6,
+  p, blockquote, pre,
+  dl, dd, ol, ul,
+  form, fieldset, legend,
+  table, th, td, caption,
+  hr {
+    margin: 0;
+    padding: 0;
+  }
+
+  /**
+   * Give all elements a bottom margin equal to our baseline.
+   */
+  h1, h2, h3, h4, h5, h6, hgroup,
+  ul, ol, dl,
+  blockquote, p, address,
+  table,
+  fieldset, figure,
+  pre {
+    margin-bottom: $lh-spacing;
+  }
+
+}
+
+
+
+
+
+/*------------------------------------*\
+    $MEASURE
+\*------------------------------------*/
+@if $lh-use-measure {
+
+  /**
+   * Set our typography measure to keep line length to an optimum character
+   * length.
+   */
+  $lh-measure: (strip-unit($lh-font-size) * 30) * 1px;
+
+  /**
+   * Create a mixin to apply our measure to any element we want, yo!
+   */
+  @mixin measure() {
+    max-width: $lh-measure;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /**
+   * Apply our calculated measure by including our mixin.
+   */
+  body {
+    @include measure;
+  }
+
+}
