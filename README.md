@@ -14,10 +14,9 @@ should integrate into your own build process seamlessly. Simply fork or download
 ##Getting Started
 As it stands LiGHTHOUSE is nothing more than a sole ```lighthouse.scss``` file. I've mulled over separating it out into multiple files (I actually started the project in this manner) but in the end decided to keep things as simple as possible. But as the project grows I may go back on that decision and tear the fucker apart.
 
-###Basic Configuration
 While I've tried to keep configuration to a minimum, you still have to do some shit yourself to get LiGHTHOUSE up and running (sorry!). But it won't take long, I promise :)
 
-####Toggle all the Things!
+###Toggle all the Things!
 The first thing you need to do is disable any modules you don't wish to use. They're all enabled by default.
 
 ```sass
@@ -27,7 +26,7 @@ $lh-use-vertical-rhythm:       true; // [ true / false ]
 $lh-use-measure:               true; // [ true / false ]
 ```
 
-####Variables
+###Variables
 Now we've only got the modules we'd like to use active it's time to configure your type variables. To keep shit simple you only need to alter the following 3 variables:
 
 **Font Size**
