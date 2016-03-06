@@ -161,6 +161,12 @@ To use small caps or stylesets you will need to apply one (or more) of the helpe
 The reason for the slight variation in how you apply these last two font features comes down to the fact you would more than likely wish to pick and choose which elements you'd like to use small caps and alternate stylesets on.
 
 ##Coming Soon
-After reading a handful of smashing blog posts by [Elliot Jay Stocks](http://www.elliotjaystocks.com/) I plan on bundling in functionality to activate some cool OpenType features like: ligatures, small caps, old style numerals and swashes.
+Two things:
+
+1. Remove widows and orphans (JS)
+2. Resize images so their height is a multiple of the baseline (JS)
+
+They're both really important issues for me but because they require a little JS
+I wanted to get the CSS/Sass-only side of this project up and running first before I started adding scripts.
 
 If you have any ideas or just want to say "hi" [give me a shout](https://twitter.com/adam_duckett).
