@@ -17,13 +17,14 @@ As it stands LiGHTHOUSE is nothing more than a sole ```lighthouse.scss``` file. 
 While I've tried to keep configuration to a minimum, you still have to do some shit yourself to get LiGHTHOUSE up and running (sorry!). But it won't take long, I promise :)
 
 ###Toggle all the Things!
-The first thing you need to do is disable any modules you don't wish to use. They're all enabled by default.
+The first thing you need to do is disable any modules you don't wish to use. Baseline guides is the only features disables by default so avoid unexpected baseline guides appearing on a live website should a hasty developer overlook the documentation o_O
 
 ```sass
-$lh-use-baseline-guides:       true; // [ true / false ]
-$lh-use-modular-scale:         true; // [ true / false ]
-$lh-use-vertical-rhythm:       true; // [ true / false ]
-$lh-use-measure:               true; // [ true / false ]
+$lh-use-baseline-guides:       false; // [ true / false ]
+$lh-use-modular-scale:         true;  // [ true / false ]
+$lh-use-vertical-rhythm:       true;  // [ true / false ]
+$lh-use-measure:               true;  // [ true / false ]
+$lh-use-font-features:         true;  // [ true / false ]
 ```
 
 ###Variables
