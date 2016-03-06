@@ -83,6 +83,8 @@ $lh-minor-second:              1.066666667;
 
 You should play around with the above ratios and the ```$lh-ratio``` variable until you find something that gets you hard.
 
+*Please note: to get the best out LiGHTOUSE you should configure Sass to round to at least 6 decimal places. Otherwise some elements may not stick to the baseline. Because browsers.*
+
 ###Vertical Rhythm
 When ```$lh-use-vertical-rhythm``` is set to `true` LiGHTHOUSE will remove default `margin` and `padding` from a bunch of pesky elements so they won't interfere with its finely-tuned-but-sometimes-a-bastard rhythm.
 
@@ -113,7 +115,7 @@ pre {
 ```
 
 ###Measure
-Last but not least, when ```$lh-use-measure``` is set to `true` LiGHTHOUSE will help keep text readable by controlling the number of characters on each line.
+When ```$lh-use-measure``` is set to `true` LiGHTHOUSE will help keep text readable by controlling the number of characters on each line.
 
 The measure is applied to the `body` of the page but feel free to edit this if you need to. LiGHTHOUSE also comes with a handy mixin which you can apply to any element in your Sass project.
 
@@ -124,6 +126,39 @@ The measure is applied to the `body` of the page but feel free to edit this if y
   margin-right: auto;
 }
 ```
+
+###Font Features
+And finally we have some toggle-able features for OpenType fonts. Now let me be clear, this stuff is a bit experimental but browser support is steadily getting better :)
+
+####Ligatures, Old Style Numbers, Swashes and Kerning
+
+Activating font features will turn on ligatures, old style numbers, swashes (1) and kerning straight out-of-the-box.
+
+```sass
+h1, h2, h3 ,h4 ,h5,
+p {
+  -webkit-font-feature-settings: "liga", "onum", "swsh" 1, "kern";
+     -moz-font-feature-settings: "liga", "onum", "swsh" 1, "kern";
+      -ms-font-feature-settings: "liga", "onum", "swsh" 1, "kern";
+       -o-font-feature-settings: "liga", "onum", "swsh" 1, "kern";
+          font-feature-settings: "liga", "onum", "swsh" 1, "kern";
+}
+```
+
+####Small Caps and Stylesets
+To use small caps or stylesets you will need to apply one (or more) of the helper classes LiGHTHOUSE provides.
+
+```sass
+.small-caps {
+  -webkit-font-feature-settings: "smcp";
+     -moz-font-feature-settings: "smcp";
+      -ms-font-feature-settings: "smcp";
+       -o-font-feature-settings: "smcp";
+          font-feature-settings: "smcp";
+}
+```
+
+The reason for the slight variation in how you apply these last two font features comes down to the fact you would more than likely wish to pick and choose which elements you'd like to use small caps and alternate stylesets on.
 
 ##Coming Soon
 After reading a handful of smashing blog posts by [Elliot Jay Stocks](http://www.elliotjaystocks.com/) I plan on bundling in functionality to activate some cool OpenType features like: ligatures, small caps, old style numerals and swashes.

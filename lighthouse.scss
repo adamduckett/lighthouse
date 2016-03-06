@@ -2,7 +2,7 @@
     $LiGHTHOUSE
 \*------------------------------------*/
 /**
- * CONTENTS..............You're readint it, sucka!
+ * CONTENTS..............You're reading it, sucka!
  * INTRO.................A pretentious paragraph about 'the idea' of LiGHTHOUSE.
  * VARIABLES.............Your settings.
  * FUNCTIONS.............Functions used to build the scale.
@@ -10,6 +10,7 @@
  * MODULAR SCALE.........Setup our modular scale for setting type.
  * VERTICAL RHYTHM.......Maintain consistent vertical spacing.
  * MEASURE...............Keep line length at an optimum character length.
+ * FONT-FEATURES.........Activate super cool features of OpenType fonts.
  */
 
 
@@ -40,10 +41,11 @@
  * independently so you can easily cook up a custom flavour to suit your own
  * project's needs :)
  */
-$lh-use-baseline-guides:       true; // [ true / false ]
-$lh-use-modular-scale:         true; // [ true / false ]
-$lh-use-vertical-rhythm:       true; // [ true / false ]
-$lh-use-measure:               true; // [ true / false ]
+$lh-use-baseline-guides:       false; // [ true / false ]
+$lh-use-modular-scale:         true;  // [ true / false ]
+$lh-use-vertical-rhythm:       true;  // [ true / false ]
+$lh-use-measure:               true;  // [ true / false ]
+$lh-use-font-features:         true;  // [ true / false ]
 
 
 
@@ -92,26 +94,10 @@ $lh-ratio:                     $lh-golden !default;
 /**
  * Baseline & Guides
  *
- * Toggle the baseline helper guides `on` or `off` as well as their colour.
+ * Edit the colour of the baseline guide if you like. You won't hurt my feelings
+ * or anything... much :(
  */
-$lh-baseline:                  round($lh-font-size * $lh-line-height);
 $lh-baseline-color:            rgba(56,255,255,.8) !default;
-
-
-/**
- * Modular Scale
- *
- * Toggle modular scale `on` or `off`
-*/
-$lh-modular-scale:             $lh-font-size !default;
-
-
-/**
- * Vertical Rhythm
- *
- * This value will be used to set consistent spacing across all elements.
- */
-$lh-spacing:                   $lh-baseline !default;
 
 
 
@@ -177,6 +163,8 @@ $lh-spacing:                   $lh-baseline !default;
  * Generate a baseline grid to aid in DEVELOPMENT only. Thanks to Mike Morrison
  * at Soholaunch.com for the idea behind this!
  */
+$lh-baseline: round($lh-font-size * $lh-line-height);
+
 @if $lh-use-baseline-guides {
 
   body {
@@ -245,6 +233,8 @@ $lh-spacing:                   $lh-baseline !default;
 /**
  * Apply our modular scale (if toggled `on`)
  */
+$lh-modular-scale:  $lh-font-size;
+
 @if $lh-use-modular-scale {
 
   /**
@@ -272,6 +262,8 @@ $lh-spacing:                   $lh-baseline !default;
 /*------------------------------------*\
     $VERTICAL-RHYTHM
 \*------------------------------------*/
+$lh-spacing: $lh-baseline;
+
 @if $lh-use-vertical-rhythm {
 
   /**
@@ -309,7 +301,6 @@ $lh-spacing:                   $lh-baseline !default;
 /*------------------------------------*\
     $MEASURE
 \*------------------------------------*/
-
 /**
  * Set our typography measure to keep line length to an optimum character
  * length.
@@ -332,6 +323,195 @@ $lh-measure: (strip-unit($lh-font-size) * 30) * 1px;
    */
   body {
     @include measure;
+  }
+
+}
+
+
+
+
+
+/*------------------------------------*\
+    $FONT-FEATURES
+\*------------------------------------*/
+@if $lh-use-font-features {
+
+  /**
+   * Ligatures, old style numbers, swashes and kerning for OpenType
+   * fonts.
+   *
+   * I've set LiGHTHOUSE to target only heading and paragraph tags by default
+   * but feel free to widen the scope by editing the selector below :)
+   */
+  h1, h2, h3 ,h4 ,h5,
+  p {
+    -webkit-font-feature-settings: "liga", "onum", "swsh" 1, "kern";
+       -moz-font-feature-settings: "liga", "onum", "swsh" 1, "kern";
+        -ms-font-feature-settings: "liga", "onum", "swsh" 1, "kern";
+         -o-font-feature-settings: "liga", "onum", "swsh" 1, "kern";
+            font-feature-settings: "liga", "onum", "swsh" 1, "kern";
+  }
+
+  /**
+   * Small caps for OpenType fonts.
+   *
+   * Use this class to arbitrarily apply small caps to any element. This can be
+   * particularly effective when used for sub-headings.
+   */
+  .small-caps {
+    -webkit-font-feature-settings: "smcp";
+       -moz-font-feature-settings: "smcp";
+        -ms-font-feature-settings: "smcp";
+         -o-font-feature-settings: "smcp";
+            font-feature-settings: "smcp";
+  }
+
+  /**
+   * Stylesets 01-20 for OpenType fonts
+   *
+   * These classes will activate the relevant styleset for your OpenType font.
+   * Admittedly this probably isn't the best way of going about this but fuck
+   * it! :D
+   */
+  .styleset--1 {
+    -webkit-font-feature-settings: "ss01" 1;
+       -moz-font-feature-settings: "ss01" 1;
+        -ms-font-feature-settings: "ss01" 1;
+         -o-font-feature-settings: "ss01" 1;
+            font-feature-settings: "ss01" 1;
+  }
+  .styleset--2 {
+    -webkit-font-feature-settings: "ss02" 1;
+       -moz-font-feature-settings: "ss02" 1;
+        -ms-font-feature-settings: "ss02" 1;
+         -o-font-feature-settings: "ss02" 1;
+            font-feature-settings: "ss02" 1;
+  }
+  .styleset--3 {
+    -webkit-font-feature-settings: "ss03" 1;
+       -moz-font-feature-settings: "ss03" 1;
+        -ms-font-feature-settings: "ss03" 1;
+         -o-font-feature-settings: "ss03" 1;
+            font-feature-settings: "ss03" 1;
+  }
+  .styleset--4 {
+    -webkit-font-feature-settings: "ss04" 1;
+       -moz-font-feature-settings: "ss04" 1;
+        -ms-font-feature-settings: "ss04" 1;
+         -o-font-feature-settings: "ss04" 1;
+            font-feature-settings: "ss04" 1;
+  }
+  .styleset--5 {
+    -webkit-font-feature-settings: "ss05" 1;
+       -moz-font-feature-settings: "ss05" 1;
+        -ms-font-feature-settings: "ss05" 1;
+         -o-font-feature-settings: "ss05" 1;
+            font-feature-settings: "ss05" 1;
+  }
+  .styleset--6 {
+    -webkit-font-feature-settings: "ss06" 1;
+       -moz-font-feature-settings: "ss06" 1;
+        -ms-font-feature-settings: "ss06" 1;
+         -o-font-feature-settings: "ss06" 1;
+            font-feature-settings: "ss06" 1;
+  }
+  .styleset--7 {
+    -webkit-font-feature-settings: "ss07" 1;
+       -moz-font-feature-settings: "ss07" 1;
+        -ms-font-feature-settings: "ss07" 1;
+         -o-font-feature-settings: "ss07" 1;
+            font-feature-settings: "ss07" 1;
+  }
+  .styleset--8 {
+    -webkit-font-feature-settings: "ss08" 1;
+       -moz-font-feature-settings: "ss08" 1;
+        -ms-font-feature-settings: "ss08" 1;
+         -o-font-feature-settings: "ss08" 1;
+            font-feature-settings: "ss08" 1;
+  }
+  .styleset--9 {
+    -webkit-font-feature-settings: "ss09" 1;
+       -moz-font-feature-settings: "ss09" 1;
+        -ms-font-feature-settings: "ss09" 1;
+         -o-font-feature-settings: "ss09" 1;
+            font-feature-settings: "ss09" 1;
+  }
+  .styleset--10 {
+    -webkit-font-feature-settings: "ss10" 1;
+       -moz-font-feature-settings: "ss10" 1;
+        -ms-font-feature-settings: "ss10" 1;
+         -o-font-feature-settings: "ss10" 1;
+            font-feature-settings: "ss10" 1;
+  }
+  .styleset--11 {
+    -webkit-font-feature-settings: "ss11" 1;
+       -moz-font-feature-settings: "ss11" 1;
+        -ms-font-feature-settings: "ss11" 1;
+         -o-font-feature-settings: "ss11" 1;
+            font-feature-settings: "ss11" 1;
+  }
+  .styleset--12 {
+    -webkit-font-feature-settings: "ss12" 1;
+       -moz-font-feature-settings: "ss12" 1;
+        -ms-font-feature-settings: "ss12" 1;
+         -o-font-feature-settings: "ss12" 1;
+            font-feature-settings: "ss12" 1;
+  }
+  .styleset--13 {
+    -webkit-font-feature-settings: "ss13" 1;
+       -moz-font-feature-settings: "ss13" 1;
+        -ms-font-feature-settings: "ss13" 1;
+         -o-font-feature-settings: "ss13" 1;
+            font-feature-settings: "ss13" 1;
+  }
+  .styleset--14 {
+    -webkit-font-feature-settings: "ss14" 1;
+       -moz-font-feature-settings: "ss14" 1;
+        -ms-font-feature-settings: "ss14" 1;
+         -o-font-feature-settings: "ss14" 1;
+            font-feature-settings: "ss14" 1;
+  }
+  .styleset--15 {
+    -webkit-font-feature-settings: "ss15" 1;
+       -moz-font-feature-settings: "ss15" 1;
+        -ms-font-feature-settings: "ss15" 1;
+         -o-font-feature-settings: "ss15" 1;
+            font-feature-settings: "ss15" 1;
+  }
+  .styleset--16 {
+    -webkit-font-feature-settings: "ss16" 1;
+       -moz-font-feature-settings: "ss16" 1;
+        -ms-font-feature-settings: "ss16" 1;
+         -o-font-feature-settings: "ss16" 1;
+            font-feature-settings: "ss16" 1;
+  }
+  .styleset--17 {
+    -webkit-font-feature-settings: "ss17" 1;
+       -moz-font-feature-settings: "ss17" 1;
+        -ms-font-feature-settings: "ss17" 1;
+         -o-font-feature-settings: "ss17" 1;
+            font-feature-settings: "ss17" 1;
+  }
+  .styleset--18 {
+    -webkit-font-feature-settings: "ss18" 1;
+       -moz-font-feature-settings: "ss18" 1;
+        -ms-font-feature-settings: "ss18" 1;
+         -o-font-feature-settings: "ss18" 1;
+            font-feature-settings: "ss18" 1;
+  }
+  .styleset--19 {
+    -webkit-font-feature-settings: "ss19" 1;
+       -moz-font-feature-settings: "ss19" 1;
+        -ms-font-feature-settings: "ss19" 1;
+         -o-font-feature-settings: "ss19" 1;
+            font-feature-settings: "ss19" 1;
+  }
+  .styleset--20 {
+    -webkit-font-feature-settings: "ss20" 1;
+       -moz-font-feature-settings: "ss20" 1;
+        -ms-font-feature-settings: "ss20" 1;
+         -o-font-feature-settings: "ss20" 1;
+            font-feature-settings: "ss20" 1;
   }
 
 }
