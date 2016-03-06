@@ -5,7 +5,7 @@ But really, there's nothing crazy going on here. Vertical rhythm is maintained s
 
 TL;DR your text will look awesome and will be easier to read :)
 
-[View an Example](https://adamduckett.github.io/lighthouse/example)
+[View an Example](http://adamduckett.io/)
 
 ##Installation
 LiGHTHOUSE gets on well with tools like [Gulp](http://gulpjs.com/) or [Grunt](http://gruntjs.com/). It's built with Sass and
