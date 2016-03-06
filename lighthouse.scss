@@ -197,6 +197,9 @@ $lh-spacing:                   $lh-baseline !default;
     );
   	background-size: 100% $lh-baseline;
   }
+  html:active body {
+    background-image: none;
+  }
 
 }
 
