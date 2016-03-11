@@ -1,0 +1,45 @@
+/*------------------------------------*\
+    $FUNCTIONS
+\*------------------------------------*/
+/**
+ * Round up px values
+ */
+@function scale-round-px($result) {
+  @if unit($result) == 'px' {
+    @return round($result);
+  }
+  @return $result;
+}
+
+/**
+ * Remove the unit of a length
+ */
+@function strip-unit($num) {
+  @if type-of($num) == 'number' and not unitless($num) {
+    @return $num / ($num * 0 + 1);
+  }
+
+  @return $num;
+}
+
+/**
+ * Calculate our `base` to the power of our `exponent`
+ */
+@function scale-pow($base, $exp) {
+  $unit: $base * 0 + 1;
+  $base: $base/$unit;
+  $value: 1;
+
+  @if $exp > 0 {
+    @for $i from 1 through $exp {
+      $value: $value * $base;
+    }
+  }
+  @else if $exp < 0 {
+    @for $i from 1 through -$exp {
+      $value: $value / $base;
+    }
+  }
+
+  @return $value * $unit;
+}

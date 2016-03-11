@@ -12,7 +12,7 @@ LiGHTHOUSE gets on well with tools like [Gulp](http://gulpjs.com/) or [Grunt](ht
 should integrate into your own build process seamlessly. Simply fork or download this repository to get started :)
 
 ##Getting Started
-As it stands LiGHTHOUSE is nothing more than a sole ```lighthouse.scss``` file. I've mulled over separating it out into multiple files (I actually started the project in this manner) but in the end decided to keep things as simple as possible. But as the project grows I may go back on that decision and tear the fucker apart.
+To take advantage of Sass' ```@import``` feature, LiGHTHOUSE is split into several ```.scss``` files which are imported by ```lighthouse.scss```. If you're used to developing in Sass this shouldn't be alien to you. If you're still rocking the CSS then all I can offer is the compiled ```.css``` file using the default settings in ```dist/css/```. And there's even a minified version too! See, I'm nice like that :)
 
 While I've tried to keep configuration to a minimum, you still have to do some shit yourself to get LiGHTHOUSE up and running (sorry!). But it won't take long, I promise :)
 
@@ -32,7 +32,7 @@ Now we've only got the modules we'd like to use active it's time to configure yo
 
 **Font Size**
 ```sass
-$lh-font-size:                 16px !default; // a `px` value
+$lh-font-size:                 100 !default;  // a `%` value
 ```
 
 **Line Height**
@@ -160,6 +160,11 @@ To use small caps or stylesets you will need to apply one (or more) of the helpe
 ```
 
 The reason for the slight variation in how you apply these last two font features comes down to the fact you would more than likely wish to pick and choose which elements you'd like to use small caps and alternate stylesets on.
+
+###Widows and Orphans
+LiGHTHOUSE comes bundled with a ```lighthouse.js``` file which removes widows and orphans from the text in any element you feed into it. By default it will remove them from heading and paragraph tags only.
+
+You can also decide the minimum number of words per line before the script kicks in. Its default value is ```3```.
 
 ##Coming Soon
 Two things:

@@ -1,0 +1,45 @@
+/*------------------------------------*\
+    $VARIABLES
+\*------------------------------------*/
+/**
+ * Define our base `font-size` and `line-height`.
+ */
+$lh-font-size:                 100 !default;  // a `%` value
+$lh-line-height:               1.5 !default;  // a unitless value
+
+
+/**
+ * Modular Scale Ratios
+ *
+ * Our modular scale ratio variables. You should never have to edit or override
+ * these :)
+ */
+$lh-golden:                    1.618034;
+$lh-double-octav:              4;
+$lh-major-twelfth:             3;
+$lh-major-eleventh:            2.666666667;
+$lh-major-tenth:               2.5;
+$lh-octave:                    2;
+$lh-major-seventh:             1.875;
+$lh-minor-seventh:             1.777777778;
+$lh-major-sixth:               1.666666667;
+$lh-minor-sixth:               1.6;
+$lh-fifth:                     1.5;
+$lh-augmented-fourth:          1.41421;
+$lh-fourth:                    1.333333333;
+$lh-major-third:               1.25;
+$lh-minor-third:               1.2;
+$lh-major-second:              1.125;
+$lh-minor-second:              1.066666667;
+
+/* This one you CAN edit to reflect your preferred modular scale. */
+$lh-ratio:                     $lh-minor-third !default;
+
+
+/**
+ * Baseline & Guides
+ *
+ * Edit the colour of the baseline guide if you like. You won't hurt my feelings
+ * or anything... much :(
+ */
+$lh-baseline-color:            rgba(56,255,255,.8) !default;

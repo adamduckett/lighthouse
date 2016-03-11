@@ -1,0 +1,66 @@
+/*------------------------------------*\
+    $MODULAR-SCALE
+\*------------------------------------*/
+
+/**
+ * Our font-size function using modular scale
+ */
+@function scale($value: 0, $base: $lh-base, $ratio: $lh-ratio) {
+  @return scale-round-px(scale-pow($ratio, $value) * $base) / $lh-base;
+}
+
+/**
+ * Our line-height function using modular scale
+ * 1. Calculate our modular scale font-size
+ * 2. The height of our baseline
+ * 3. The number of whole lines our type spans
+ * 4. Return a line-height value that vertically centers our type across
+ *    however many whole lines it spans
+ */
+@function lines($value: 0, $base: $lh-base, $ratio: $lh-ratio) {
+  $font-size: scale-round-px(scale-pow($ratio, $value) * $base);  /* [1] */
+  $line: $lh-baseline;                                            /* [2] */
+  $lines: ceil($font-size / $line);                               /* [3] */
+
+  @return (ceil($lines) * $line) / $font-size;                    /* [4] */
+}
+
+/**
+ * Create our modular scale mixin which sets both `font-size` and `line-height'.
+ */
+@mixin modular-scale($value) {
+  font-size: #{scale($value) + 'rem'};
+  line-height: lines($value);
+}
+
+/**
+ * Apply our modular scale (if toggled `on`)
+ */
+$lh-modular-scale:  $lh-font-size;
+
+@if $lh-use-modular-scale {
+
+  /**
+   * HTML
+   */
+  html {
+    font-size: #{$lh-font-size + '%'};
+  }
+
+  /**
+   * Headings
+   */
+  h1 { @include modular-scale(5);  }
+  h2 { @include modular-scale(4);  }
+  h3 { @include modular-scale(3);  }
+  h4 { @include modular-scale(2);  }
+  h5 { @include modular-scale(1); }
+
+  /**
+   * Paragraphs
+   */
+  p {
+    @include modular-scale(0);
+  }
+
+}

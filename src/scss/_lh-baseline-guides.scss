@@ -1,0 +1,35 @@
+/*------------------------------------*\
+    $BASELINE-GUIDES
+\*------------------------------------*/
+/**
+ * Generate a baseline grid to aid in DEVELOPMENT only. Thanks to Mike Morrison
+ * at Soholaunch.com for the idea behind this!
+ */
+$lh-baseline: round($lh-base * $lh-line-height);
+$lh-baseline-rem: $lh-baseline / $lh-base;
+
+@if $lh-use-baseline-guides {
+
+  body {
+    background-image: -webkit-linear-gradient(
+      top,
+      rgba(0,0,0,0) 95%,
+      $lh-baseline-color 100%
+    );
+  	background-image: -moz-linear-gradient(
+      top,
+      rgba(0,0,0,0) 95%,
+      $lh-baseline-color 100%
+    );
+  	background-image: -o-linear-gradient(
+      top,
+      rgba(0,0,0,0) 95%,
+      $lh-baseline-color 100%
+    );
+  	background-size: 100% #{$lh-baseline-rem + 'rem'};
+  }
+  html:active body {
+    background-image: none;
+  }
+
+}

@@ -1,0 +1,28 @@
+/*------------------------------------*\
+    $MEASURE
+\*------------------------------------*/
+/**
+ * Set our typography measure to keep line length to an optimum character
+ * length.
+ */
+$lh-measure: #{((strip-unit($lh-base) * 30)) / $lh-base + 'rem'};
+
+/**
+ * Create a mixin to apply our measure to any element we want, yo!
+ */
+@mixin measure() {
+  max-width: $lh-measure;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@if $lh-use-measure {
+
+  /**
+   * Apply our calculated measure by including our mixin.
+   */
+  body {
+    @include measure;
+  }
+
+}
