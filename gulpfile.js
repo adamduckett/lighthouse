@@ -15,10 +15,11 @@ var prefix = require('gulp-autoprefixer');
 var minify = require('gulp-minify-css');
 
 // JS
-//var jshint = require('gulp-jshint');
-//var stylish = require('jshint-stylish');
-//var concat = require('gulp-concat');
-//var uglify = require('gulp-uglify');
+var jshint = require('jshint');
+var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
 
 
 /**
@@ -75,16 +76,15 @@ gulp.task('sass', function() {
 // Lint, minify & concatenate scripts
 gulp.task('js', function() {
   return gulp.src(paths.scripts.input)
-    .pipe(plumber())
-    .pipe(concat('main.js'))
-    .pipe(header(banner.full, { package : package }))
+    .pipe(plumber({
+      errorHandler: onError
+    }))
+    .pipe(concat('lighthouse.js'))
     .pipe(gulp.dest(paths.scripts.output))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
-    .pipe(header(banner.min, { package : package }))
     .pipe(gulp.dest(paths.scripts.output))
-    .pipe(notify({ message: 'Scripts task complete' }))
-    .pipe(connect.reload());
+    .pipe(notify({ message: 'Scripts task complete' }));
 });
 
 
@@ -94,7 +94,7 @@ gulp.task('js', function() {
 
 // Compile our Sass files
 gulp.task('compile', [
-  //'js',
+  'js',
   'sass'
 ]);
 
@@ -107,5 +107,5 @@ gulp.task('default', [
 // Watch for changes to our Sass files
 gulp.task('watch', function() {
   gulp.watch(paths.styles.input, ['sass']);
-  //gulp.watch(paths.scripts.input, ['js']);
+  gulp.watch(paths.scripts.input, ['js']);
 });
